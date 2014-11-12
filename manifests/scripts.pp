@@ -13,20 +13,20 @@
 #
 class ucarp::scripts {
   file {
-    "${ucarp::params::scriptDir}/vip-up":
+    "${ucarp::params::scriptDir}/${ucarp::upscriptExec}":
       ensure  => file,
       mode    => '700',
       owner   => 'root',
       group   => 'root',
-      path    => "${ucarp::params::scriptDir}/vip-up",
+      path    => "${ucarp::params::scriptDir}/${ucarp::upscriptExec}",
       content => template($ucarp::upscript);
 
-    "${ucarp::params::scriptDir}/vip-down":
+    "${ucarp::params::scriptDir}/${ucarp::downscriptExec}":
       ensure  => file,
       mode    => '700',
       owner   => 'root',
       group   => 'root',
-      path    => "${ucarp::params::scriptDir}/vip-down",
+      path    => "${ucarp::params::scriptDir}/${ucarp::downscriptExec}",
       content => template($ucarp::downscript);
   }
 }

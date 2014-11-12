@@ -40,6 +40,7 @@ can use:
 class { '::ucarp':
   vId => '001',
   vIp => '192.168.0.222',
+  vIpPrefixLength => '24',
   vIf => 'eth0',
   vPw => 'Secret'
 }
@@ -76,6 +77,9 @@ Set the virtual ID
 ####`vIp`
 Set the virtual IP
 
+####`vIpPrefixLength`
+Set the virtaul IP prefix length (netmask), supported on Gentoo systems
+
 ####`vIf`
 Set the virtual Interface
 
@@ -90,6 +94,12 @@ See the included template for ideas.
 Include a custom template for the ucarp downscript.
 See the included template for ideas.
 
+####`upscriptExec`
+Overwrite the default path of the ucarp upscript executable
+
+####`downscriptExec`
+Overwrite the default path of the ucarp downscript executable
+
 ##Limitations
 
 This module has been built on and tested against Puppet 3.2 and higher.
@@ -98,11 +108,12 @@ The module has been tested on:
 
 * RedHat Enterprise Linux 6
 * Scientific Linux 6
+* Gentoo Linux
 
 Testing on other platforms has been light and cannot be guaranteed.
 
 Currently only eth0 is supported, using other interfaces result in a rewrite
-of the common template.
+of the common template. Note that Gentoo does not have this limitation.
 
 ##Development
 

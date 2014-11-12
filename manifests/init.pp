@@ -50,13 +50,18 @@
 class ucarp (
   $vId = $ucarp::params::vId,
   $vIp = $ucarp::params::vIp,
+  $vIpPrefixLength = $ucarp::params::vIpPrefixLength;
   $vIf = $ucarp::params::vIf,
   $vPw = $ucarp::params::vPw,
   $upscript = $ucarp::params::upscript,
-  $downscript = $ucarp::params::downscript) inherits ucarp::params {
+  $downscript = $ucarp::params::downscript,
+  $upscriptExec = $ucarp::params::upscriptExec,
+  $downscriptExec = $ucarp::params::downscripExec) inherits ucarp::params {
 
-  # Require class yum to have the relevant repositories in place
-  require yum
+  if $::osfamily == 'RedHat' {
+    # Require class yum to have the relevant repositories in place
+    require yum
+  } 
 
   # Start workflow
   if $ucarp::params::linux {
